@@ -5,6 +5,7 @@ import Skill from "./components/Skill";
 import Contact from "./components/Contact";
 import Project from "./components/Project";
 import Certificates from "./components/Card";
+import Gallery from "./components/Photos";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Skill />
       <Project />
       <Certificates />
+      <Gallery />
       <Contact />
     </>
   );

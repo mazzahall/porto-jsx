@@ -1,69 +1,60 @@
-import introImg from "./assets/Intro.png";
-import typeImg from "./assets/Type.png";
-import reduxImg from "./assets/Redux.png";
-import reactImg from "./assets/React.png";
+import React, { useState } from "react";
+import adhaImg from "./assets/adha.png";
+import barengImg from "./assets/bareng.png";
+import dapurImg from "./assets/dapur.png";
+import juaraImg from "./assets/juara.png";
+import bolaImg from "./assets/bola.png";
+import kumpulImg from "./assets/kumpul.png";
+import futsalImg from "./assets/futsal.png";
+import malemImg from "./assets/malem.png";
+import malabarImg from "./assets/malabar.png";
 
-const Photos = () => {
-  const cards = [
-    {
-      title: "Certificate Intro to UI&UX",
-      description: "Penghargaan menyelesaikan kursus HTML dasar hingga mahir.",
-      color: "#7C3AED", // ungu
-      image: introImg,
-    },
-    {
-      title: "Certificate TypeScript",
-      description: "Sertifikat penyelesaian course TypeScript dasar.",
-      color: "#0EA5E9", // biru
-      image: typeImg,
-    },
-    {
-      title: "Certificate React Redux",
-      description: "Penghargaan dalam menyelesaikan pembelajaran React Redux.",
-      color: "#EAB308", // kuning
-      image: reduxImg,
-    },
-    {
-      title: "Certificate React Dasar",
-      description: "Sertifikat penguasaan React dasar.",
-      color: "#111827", // hitam
-      image: reactImg,
-    },
+const Gallery = () => {
+  const photos = [
+    { image: adhaImg },
+    { image: barengImg },
+    { image: dapurImg },
+    { image: juaraImg },
+    { image: futsalImg },
+    { image: kumpulImg },
+    { image: bolaImg },
+    { image: malabarImg },
+    { image: malemImg },
   ];
+
+  const [showAll, setShowAll] = useState(false);
+
+  // kalau showAll = false → cuma tampil 3 foto, kalau true → semua foto
+  const visiblePhotos = showAll ? photos : photos.slice(0, 3);
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center py-10">
-      <h2 className="text-3xl font-bold text-cyan-600 mb-10">
-        My Certificates 🏆
-      </h2>
+      <h2 className="text-3xl font-bold text-cyan-600 mb-10">My Gallery 📷</h2>
 
       <div className="flex flex-wrap gap-6 justify-center">
-        {cards.map((card, i) => (
+        {visiblePhotos.map((photo, i) => (
           <div
             key={i}
-            className="bg-white rounded-2xl shadow-md overflow-hidden w-80 hover:scale-105 transform transition duration-500"
+            className="rounded-2xl shadow-lg overflow-hidden w-72 hover:scale-105 transform transition duration-300"
           >
-            {/* Bagian Gambar */}
-            <div className="relative">
-              <img src={card.image} alt={card.title} className="w-full h-48 object-cover" />
-              <div
-                className="absolute top-0 right-0 w-16 h-16 flex items-center justify-center text-white font-semibold rounded-bl-lg"
-                style={{ backgroundColor: card.color }}
-              >
-                dasar
-              </div>
-            </div>
-
-            {/* Bagian Bawah */}
-            <div className="bg-gray-900 text-center p-4 text-white">
-              <h3 className="font-bold text-lg mb-2">{card.title}</h3>
-              <p className="text-sm">{card.description}</p>
-            </div>
+            <img
+              src={photo.image}
+              alt={`gallery-${i}`}
+              className="w-full h-72 object-cover"
+            />
           </div>
         ))}
       </div>
+
+      {/* Tombol toggle tetap ada */}
+      <button
+        onClick={() => setShowAll(!showAll)}
+        className="mt-8 px-6 py-2 bg-white-600 text-black font-semibold rounded-lg shadow-md hover:bg-cyan-700 transition duration-300"
+      >
+        {showAll ? "Tutup" : "Lihat Semua"}
+      </button>
     </div>
   );
 };
 
-export default Photos;
+export default Gallery;
